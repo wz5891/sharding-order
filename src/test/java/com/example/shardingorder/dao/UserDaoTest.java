@@ -33,4 +33,13 @@ public class UserDaoTest {
 
         System.out.println(maps);
     }
+
+    @Test
+    public void testSelectUserInfoByIds() {
+        List<Long> userIds = new ArrayList<>();
+        userIds.add(1L);
+        userIds.add(2L);
+        List<Map> users = userDao.selectUserInfoByIds(userIds);
+        System.out.println(users);
+    }
 }

@@ -23,7 +23,18 @@ CREATE TABLE `t_order_2`
 CREATE TABLE `t_user`
 (
     `user_id`   bigint(20)   NOT NULL COMMENT '用户id',
-    `full_name`  varchar(255) NOT NULL COMMENT '用户姓名',
+    `full_name` varchar(255) NOT NULL COMMENT '用户姓名',
     `user_type` char(1) DEFAULT NULL COMMENT '用户类型',
     PRIMARY KEY (`user_id`) USING BTREE
+);
+
+
+-- 在order_db_1，order_db_2，user_db 分别创建公共表 t_dict
+CREATE TABLE `t_dict`
+(
+    `dict_id` bigint(20)  NOT NULL COMMENT '字典id',
+    `type`    varchar(50) NOT NULL COMMENT '字典类型',
+    `code`    varchar(50) NOT NULL COMMENT '字典编码',
+    `value`   varchar(50) NOT NULL COMMENT '字典值',
+    PRIMARY KEY (`dict_id`) USING BTREE
 );

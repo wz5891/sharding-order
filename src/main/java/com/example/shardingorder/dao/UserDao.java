@@ -39,4 +39,23 @@ public interface UserDao {
             "</script>"
     })
     List<Map> selectUserByIds(@Param("userIds") List<Long> userIds);
+
+
+    /**
+     * 根据id列表查询多个用户，关联查询字典表
+     *
+     * @param userIds 用户id列表
+     * @return
+     */
+    @Select({"<script>",
+            " select",
+            " * ",
+            " from t_user t ,t_dict b",
+            " where t.user_type = b.code and t.user_id in",
+            "<foreach collection='userIds' item='id' open='(' separator=',' close=')'>",
+            "#{id}",
+            "</foreach>",
+            "</script>"
+    })
+    List<Map> selectUserInfoByIds(@Param("userIds") List<Long> userIds);
 }

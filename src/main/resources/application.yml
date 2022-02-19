@@ -53,6 +53,7 @@ spring:
             inline:
               sharding-column: order_id
               algorithm‐expression: t_order_$->{order_id % 2 + 1}
+      broadcast-tables: t_dict
     props:
       # 打开sql输出日志
       sql:
