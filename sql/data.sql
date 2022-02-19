@@ -16,4 +16,14 @@ CREATE TABLE `t_order_2`
     `user_id`  BIGINT(19)     NOT NULL COMMENT '下单用户id',
     `status`   VARCHAR(50)    NOT NULL COMMENT '订单状态' COLLATE 'utf8_general_ci',
     PRIMARY KEY (`order_id`) USING BTREE
-)
+);
+
+
+-- user_db，表结构如下
+CREATE TABLE `t_user`
+(
+    `user_id`   bigint(20)   NOT NULL COMMENT '用户id',
+    `full_name`  varchar(255) NOT NULL COMMENT '用户姓名',
+    `user_type` char(1) DEFAULT NULL COMMENT '用户类型',
+    PRIMARY KEY (`user_id`) USING BTREE
+);
