@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 public interface OrderDao {
     @Insert("insert into t_order(price,user_id,status) value(#{price},#{userId},#{status})")
-    int insertOrder(@Param("price") BigDecimal price,@Param("userId") Long userId,@Param("status") String status);
+    int insertOrder(@Param("price") BigDecimal price, @Param("userId") Long userId, @Param("status") String status);
 
     @Select({"<script>\n" +
             "select\n" +
@@ -24,6 +24,7 @@ public interface OrderDao {
             "<foreach collection='orderIds' item='id' open='(' separator=',' close=')'>\n" +
             " #{id}\n" +
             "</foreach>\n" +
+            " and t.user_id=#{userId}"+
             "</script>"})
-    List<Map> selectOrderByIds(@Param("orderIds") List<Long> orderIds);
+    List<Map> selectOrderByIds(@Param("userId") Integer userId, @Param("orderIds") List<Long> orderIds);
 }

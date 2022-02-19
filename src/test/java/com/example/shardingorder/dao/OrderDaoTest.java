@@ -18,20 +18,25 @@ public class OrderDaoTest {
     private OrderDao orderDao;
 
     @Test
-    public void testInsertOrder(){
-        for (int i=0;i<10;i++){
-            orderDao.insertOrder(BigDecimal.valueOf((i+1)+5),1L,"WAIT_PAY");
+    public void testInsertOrder() {
+        for (int i = 0; i < 10; i++) {
+            orderDao.insertOrder(BigDecimal.valueOf((i + 1) + 5), 1L, "WAIT_PAY");
+        }
+
+        for (int i = 0; i < 10; i++) {
+            orderDao.insertOrder(BigDecimal.valueOf((i + 1) + 10), 2L, "WAIT_PAY");
         }
     }
 
     @Test
-    public void testSelectOrderByIds(){
+    public void testSelectOrderByIds() {
         List<Long> ids = new ArrayList<>();
-        ids.add(701916004233510912L);
-        ids.add(701916143438266368L);
-        ids.add(701916143513763841L);
+        ids.add(701944942003486721L);
+        ids.add(701944943286943745L);
 
-        List<Map> maps = orderDao.selectOrderByIds(ids);
+        int userId = 1;
+
+        List<Map> maps = orderDao.selectOrderByIds(userId, ids);
         System.out.println(maps);
     }
 }

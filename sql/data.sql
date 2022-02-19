@@ -1,3 +1,5 @@
+-- order_db_1，order_db_2两个数据库，表结构一样，如下
+
 CREATE TABLE `t_order_1`
 (
     `order_id` BIGINT(19)     NOT NULL COMMENT '订单id',
