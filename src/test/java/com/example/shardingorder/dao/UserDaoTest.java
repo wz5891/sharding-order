@@ -17,14 +17,14 @@ public class UserDaoTest {
     private UserDao userDao;
 
     @Test
-    public void testInsertOrder() {
+    public void testInsertUser() {
         for (int i = 0; i < 10; i++) {
             userDao.insertUser(Long.valueOf(i), "姓名" + i);
         }
     }
 
     @Test
-    public void testSelectOrderByIds() {
+    public void testSelectUserByIds() {
         List<Long> ids = new ArrayList<>();
         ids.add(1L);
         ids.add(2L);

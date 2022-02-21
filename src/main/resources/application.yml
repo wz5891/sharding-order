@@ -9,13 +9,19 @@ spring:
   shardingsphere:
     datasource:
       # 定义数源
-      names: m0,m1,m2
+      names: m0,m1,m2,s0
       m0:
         type: com.alibaba.druid.pool.DruidDataSource
         driver‐class‐name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/user_db?useUnicode=true
+        url: jdbc:mysql://localhost:3307/user_db?useUnicode=true
         username: root
-        password: 1
+        password: 123456
+      s0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver‐class‐name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3308/user_db?useUnicode=true
+        username: root
+        password: 123456
       m1:
         type: com.alibaba.druid.pool.DruidDataSource
         driver‐class‐name: com.mysql.cj.jdbc.Driver
@@ -31,7 +37,7 @@ spring:
     sharding:
       tables:
         t_user:
-          actual‐data‐nodes: m0.t_user
+          actual‐data‐nodes: ds0.t_user
           table-strategy:
             inline:
               sharding-column: user_id
@@ -54,6 +60,10 @@ spring:
               sharding-column: order_id
               algorithm‐expression: t_order_$->{order_id % 2 + 1}
       broadcast-tables: t_dict
+      master-slave-rules:
+        ds0:
+          master-data-source-name: m0
+          slave‐data‐source‐names: s0
     props:
       # 打开sql输出日志
       sql:
